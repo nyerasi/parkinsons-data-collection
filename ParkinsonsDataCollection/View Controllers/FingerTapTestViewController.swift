@@ -60,7 +60,7 @@ class FingerTapTestViewController: UIViewController {
         }
         alertController.addAction(rateAction)
         self.present(alertController, animated: true, completion: nil)
-    }4
+    }
     
     
     

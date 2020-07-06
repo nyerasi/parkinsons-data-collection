@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */; };
 		B051802D24B2CE0F000C86F3 /* RotationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */; };
+		B051802F24B2D48A000C86F3 /* ClinicalRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */; };
 		B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08507D124B12ACB00371BE1 /* AppDelegate.swift */; };
 		B08507D424B12ACB00371BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08507D324B12ACB00371BE1 /* SceneDelegate.swift */; };
-		B08507D624B12ACB00371BE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08507D524B12ACB00371BE1 /* ViewController.swift */; };
 		B08507D924B12ACB00371BE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B08507D724B12ACB00371BE1 /* Main.storyboard */; };
 		B08507DC24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B08507DA24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld */; };
 		B08507DE24B12ACC00371BE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B08507DD24B12ACC00371BE1 /* Assets.xcassets */; };
@@ -44,10 +44,10 @@
 /* Begin PBXFileReference section */
 		B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerTapTestViewController.swift; sourceTree = "<group>"; };
 		B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTestViewController.swift; sourceTree = "<group>"; };
+		B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicalRatingViewController.swift; sourceTree = "<group>"; };
 		B08507CE24B12ACB00371BE1 /* ParkinsonsDataCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkinsonsDataCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08507D124B12ACB00371BE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B08507D324B12ACB00371BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B08507D524B12ACB00371BE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B08507D824B12ACB00371BE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B08507DB24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ParkinsonsDataCollection.xcdatamodel; sourceTree = "<group>"; };
 		B08507DD24B12ACC00371BE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +90,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B051803024B2D493000C86F3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B085080824B1359000371BE1 /* TaskOverviewViewController.swift */,
+				B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */,
+				B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */,
+				B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		B08507C524B12ACB00371BE1 = {
 			isa = PBXGroup;
 			children = (
@@ -113,19 +124,16 @@
 		B08507D024B12ACB00371BE1 /* ParkinsonsDataCollection */ = {
 			isa = PBXGroup;
 			children = (
+				B051803024B2D493000C86F3 /* View Controllers */,
 				B085080524B12ADC00371BE1 /* View */,
 				B085080424B12AD600371BE1 /* Model */,
 				B08507D124B12ACB00371BE1 /* AppDelegate.swift */,
 				B08507D324B12ACB00371BE1 /* SceneDelegate.swift */,
-				B08507D524B12ACB00371BE1 /* ViewController.swift */,
-				B085080824B1359000371BE1 /* TaskOverviewViewController.swift */,
 				B08507D724B12ACB00371BE1 /* Main.storyboard */,
 				B08507DD24B12ACC00371BE1 /* Assets.xcassets */,
 				B08507DF24B12ACC00371BE1 /* LaunchScreen.storyboard */,
 				B08507E224B12ACC00371BE1 /* Info.plist */,
 				B08507DA24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld */,
-				B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */,
-				B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */,
 			);
 			path = ParkinsonsDataCollection;
 			sourceTree = "<group>";
@@ -300,11 +308,11 @@
 				B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */,
 				B085080724B12AE900371BE1 /* Button.swift in Sources */,
 				B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */,
-				B08507D624B12ACB00371BE1 /* ViewController.swift in Sources */,
 				B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */,
 				B08507D424B12ACB00371BE1 /* SceneDelegate.swift in Sources */,
 				B08507DC24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld in Sources */,
 				B051802D24B2CE0F000C86F3 /* RotationTestViewController.swift in Sources */,
+				B051802F24B2D48A000C86F3 /* ClinicalRatingViewController.swift in Sources */,
 				B085080F24B136F300371BE1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

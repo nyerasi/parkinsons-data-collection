@@ -8,9 +8,19 @@
 
 import UIKit
 
+protocol TaskDelegate {
+    // experimenting with protocols for future refactoring
+    func configureTaskDetails()
+    func startTask()
+    func endTask()
+    func updateViewModel()
+}
+
 class FingerTapTestViewController: UIViewController {
     
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var taskNumberOuterView: UIView!
+    @IBOutlet var taskNumberLabel: UILabel!
     
     var viewModel: TaskViewModel?
     
@@ -21,7 +31,19 @@ class FingerTapTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTaskDetails()
         // Do any additional setup after loading the view.
+    }
+    
+    func configureTaskDetails() {
+        if let viewModel = viewModel {
+            taskNumberLabel.text = "\(viewModel.taskNumber)"
+        }
+        taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.layer.cornerRadius = 30
+        taskNumberOuterView.layer.masksToBounds = true
+        taskNumberOuterView.layer.borderWidth = 3
+        taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
     }
     @IBAction func targetTapped(_ sender: UIButton) {
         // buttonTaps [button tag (1 - 5): number of taps]

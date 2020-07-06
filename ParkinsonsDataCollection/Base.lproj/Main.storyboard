@@ -391,6 +391,8 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="APW-Ta-jTX"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="taskNumberLabel" destination="Dns-L3-DNA" id="O8U-LL-snC"/>
+                        <outlet property="taskNumberOuterView" destination="g2s-dc-I4p" id="Vbc-GA-9JG"/>
                         <outlet property="timeLabel" destination="9rz-0a-utK" id="iI1-aw-3UV"/>
                     </connections>
                 </viewController>

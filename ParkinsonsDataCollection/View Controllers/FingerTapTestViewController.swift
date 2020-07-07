@@ -78,14 +78,19 @@ class FingerTapTestViewController: UIViewController {
     @IBAction func targetTapped(_ sender: UIButton) {
         // buttonTaps [button tag (1 - 5): number of taps]
         // log timestamps of taps as well!
-        print("tapped target with score \(sender.tag)")
+        
+        // testing UIButton animations — shorten to one iteration
+        sender.flash()
+        
         let currentValue = buttonTaps[sender.tag] ?? 0
         buttonTaps[sender.tag] = currentValue + 1
     }
     
     func presentCompletedAlert() {
+        // calculate score and accuracy
+        let message = "Great work! You scored \(calculateTotalScore()) points with an accuracy of \(calculateTotalAccuracy())."
         let alertController = UIAlertController(title: "Task Completed", message:
-            "The time has elapsed for this task!", preferredStyle: .alert)
+            message, preferredStyle: .alert)
         let rateAction = UIAlertAction(title: "Rate this task", style: .default) { (action) in
             // segue to rating screen
         }
@@ -93,33 +98,49 @@ class FingerTapTestViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func calculateTotalScore() -> Int {
+        // returns weighted sum of all taps
+        var score = 0
+        for entry in buttonTaps {
+            score += entry.key * entry.value
+        }
+        return score
+    }
     
+    func calculateTotalAccuracy() -> String {
+        // returns string describing % of taps that were highest value
+        var totalTaps = 0
+        for entry in buttonTaps {
+            totalTaps += entry.value
+        }
+       let totalAccuracy = Double(buttonTaps[5] ?? 0) / Double(totalTaps)
+        return "\(totalAccuracy * 100)%"
+    }
     
     @IBAction func startButtonTapped(_ sender: Any) {
         // create stopwatch timer
-        
-        self.timer = Timer(timeInterval: 1, target: self, selector: #selector(updateStopwatch), userInfo: nil, repeats: true)
-        print("created timer")
+        if let viewModel = viewModel {
+            self.count = viewModel.taskDuration
+        }
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            self.updateStopwatch()
+        })
         
         // testing
         enableTarget()
     }
     
     @objc private func updateStopwatch() {
-        print("updating timer")
         count -= 1
-        if count  <= 0 {
-//            if var timer = timer
+        if count <= 0 {
             timer.invalidate()
             timeLabel.text = "00:00"
             
-            // alert time has elapsed
+            // present alert, disable target
             presentCompletedAlert()
-            
-            
-            // disable button and segue
+            disableTarget()
         } else {
-            timeLabel.text = "00:\(count & 60)"
+            timeLabel.text = "00:0\(count)"
         }
     }
     

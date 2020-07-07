@@ -26,7 +26,7 @@ class ContextButton: UIButton {
 }
 
 extension UIButton {
-    // animations here: 
+    // animations here, customize duration/repeat count
     func pulsate() {
         
         let pulse = CASpringAnimation(keyPath: "transform.scale")
@@ -49,7 +49,7 @@ extension UIButton {
         flash.toValue = 0.1
         flash.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         flash.autoreverses = true
-        flash.repeatCount = 3
+        flash.repeatCount = 0
         
         layer.add(flash, forKey: nil)
     }

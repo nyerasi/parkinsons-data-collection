@@ -21,23 +21,52 @@ class FingerTapTestViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var taskNumberOuterView: UIView!
     @IBOutlet var taskNumberLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
+    @IBOutlet var targetView: UIView!
     
     var viewModel: TaskViewModel?
     
+    var targetIsEnabled: Bool = false
     var count: Int = 10
-    var timer: Timer?
+    var timer = Timer()
     var buttonTaps = [Int: Int]()
+    
+    // to log timestamps of each target's taps
+    var targetTaps = [Int: [Date]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTaskDetails()
+        disableTarget()
         // Do any additional setup after loading the view.
+    }
+    
+    func enableTarget() {
+        // disable/enable target and set colors
+        for i in 0..<targetView.subviews.count {
+            // retain cycle?
+            UIView.animate(withDuration: 0.5) {
+                self.targetView.subviews[i].backgroundColor = targetEnabledColors[i]
+            }
+            targetView.subviews[i].isUserInteractionEnabled = true
+        }
+    }
+    
+    func disableTarget() {
+        // disable/enable target and set colors
+        for i in 0..<targetView.subviews.count {
+            UIView.animate(withDuration: 0.5) {
+                self.targetView.subviews[i].backgroundColor = targetDisabledColors[i]
+            }
+            targetView.subviews[i].isUserInteractionEnabled = false
+        }
     }
     
     func configureTaskDetails() {
         if let viewModel = viewModel {
             taskNumberLabel.text = "\(viewModel.taskNumber)"
+            count = viewModel.taskDuration
         }
         taskNumberLabel.textColor = lightBlueColor
         taskNumberOuterView.layer.cornerRadius = 30
@@ -45,9 +74,11 @@ class FingerTapTestViewController: UIViewController {
         taskNumberOuterView.layer.borderWidth = 3
         taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
     }
+    
     @IBAction func targetTapped(_ sender: UIButton) {
         // buttonTaps [button tag (1 - 5): number of taps]
-        
+        // log timestamps of taps as well!
+        print("tapped target with score \(sender.tag)")
         let currentValue = buttonTaps[sender.tag] ?? 0
         buttonTaps[sender.tag] = currentValue + 1
     }
@@ -68,11 +99,17 @@ class FingerTapTestViewController: UIViewController {
         // create stopwatch timer
         
         self.timer = Timer(timeInterval: 1, target: self, selector: #selector(updateStopwatch), userInfo: nil, repeats: true)
+        print("created timer")
+        
+        // testing
+        enableTarget()
     }
     
     @objc private func updateStopwatch() {
+        print("updating timer")
         count -= 1
-        if count  <= 0, var timer = timer {
+        if count  <= 0 {
+//            if var timer = timer
             timer.invalidate()
             timeLabel.text = "00:00"
             

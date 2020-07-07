@@ -12,6 +12,7 @@ protocol TaskOverviewDelegate {
     // for future additions, code readability
     
     func configureButtons()
+    func navigateToTask()
 }
 
 class TaskOverviewViewController: UIViewController {
@@ -27,7 +28,7 @@ class TaskOverviewViewController: UIViewController {
     @IBOutlet var rightSideStartButton: UIButton!
     @IBOutlet var leftSideStartButton: UIButton!
     
-    var viewModel: TaskViewModel? = ExampleTestModel
+    var viewModel: TaskViewModel? = FingerTapTestModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +39,31 @@ class TaskOverviewViewController: UIViewController {
     }
     
     @IBAction func startRightSide(_ sender: Any) {
-        
+        if let viewModel = viewModel {
+            switch viewModel.task {
+            case .pronationSupination:
+                self.performSegue(withIdentifier: "toSupinationPronationTask", sender: self)
+            case .fingerTapOne:
+                self.performSegue(withIdentifier: "toFingerTapTask", sender: self)
+            case .fingerTapTwo:
+                self.performSegue(withIdentifier: "toFingerTapTask", sender: self)
+            }
+        }
     }
     
     @IBAction func startLeftSide(_ sender: Any) {
-        
+        if let viewModel = viewModel {
+            switch viewModel.task {
+            case .pronationSupination:
+                self.performSegue(withIdentifier: "toSupinationPronationTask", sender: self)
+            case .fingerTapOne:
+                // update subtitle using view model
+                self.performSegue(withIdentifier: "toFingerTapTask", sender: self)
+            case .fingerTapTwo:
+                // update subtitle
+                self.performSegue(withIdentifier: "toFingerTapTask", sender: self)
+            }
+        }
     }
     
     private func configureTaskDetails() {

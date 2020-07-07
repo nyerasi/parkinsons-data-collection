@@ -10,12 +10,15 @@ import UIKit
 
 class ClinicalRatingViewController: UIViewController {
 
+    @IBOutlet var subtitleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    // for finger tap — ask about open/close hands, fingers
 
     /*
     // MARK: - Navigation

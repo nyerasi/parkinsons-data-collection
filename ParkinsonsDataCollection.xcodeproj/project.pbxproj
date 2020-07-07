@@ -23,6 +23,8 @@
 		B085080924B1359000371BE1 /* TaskOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080824B1359000371BE1 /* TaskOverviewViewController.swift */; };
 		B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080C24B135F600371BE1 /* TaskViewModel.swift */; };
 		B085080F24B136F300371BE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080E24B136F300371BE1 /* Constants.swift */; };
+		B09238FC24B3C7550064F482 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FB24B3C7550064F482 /* Task.swift */; };
+		B092390024B46DE10064F482 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FF24B46DE10064F482 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		B085080824B1359000371BE1 /* TaskOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskOverviewViewController.swift; sourceTree = "<group>"; };
 		B085080C24B135F600371BE1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		B085080E24B136F300371BE1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B09238FB24B3C7550064F482 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		B09238FF24B46DE10064F482 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 				B085080624B12AE900371BE1 /* Button.swift */,
 				B085080C24B135F600371BE1 /* TaskViewModel.swift */,
 				B085080E24B136F300371BE1 /* Constants.swift */,
+				B09238FB24B3C7550064F482 /* Task.swift */,
+				B09238FF24B46DE10064F482 /* Color.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -311,6 +317,8 @@
 				B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */,
 				B085080724B12AE900371BE1 /* Button.swift in Sources */,
 				B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */,
+				B092390024B46DE10064F482 /* Color.swift in Sources */,
+				B09238FC24B3C7550064F482 /* Task.swift in Sources */,
 				B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */,
 				B08507D424B12ACB00371BE1 /* SceneDelegate.swift in Sources */,
 				B08507DC24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld in Sources */,

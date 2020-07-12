@@ -26,4 +26,5 @@ let targetDisabledColors: [UIColor] = [
     UIColor.systemGray3,
     UIColor.systemGray2
 ]
+
 //let firstTaskViewModel = TaskViewModel(taskNumber: 1, taskName: "Pronation-Supination", taskInstructions: "Alternate between pronation and supination of the hand.", taskGoal: "Perform the task as quickly and try to maintain full range-of-motion!")

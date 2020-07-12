@@ -25,6 +25,7 @@
 		B085080F24B136F300371BE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080E24B136F300371BE1 /* Constants.swift */; };
 		B09238FC24B3C7550064F482 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FB24B3C7550064F482 /* Task.swift */; };
 		B092390024B46DE10064F482 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FF24B46DE10064F482 /* Color.swift */; };
+		B092390224BA8F2D0064F482 /* SteppingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092390124BA8F2D0064F482 /* SteppingSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		B085080E24B136F300371BE1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B09238FB24B3C7550064F482 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B09238FF24B46DE10064F482 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B092390124BA8F2D0064F482 /* SteppingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				B085080E24B136F300371BE1 /* Constants.swift */,
 				B09238FB24B3C7550064F482 /* Task.swift */,
 				B09238FF24B46DE10064F482 /* Color.swift */,
+				B092390124BA8F2D0064F482 /* SteppingSlider.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */,
 				B085080724B12AE900371BE1 /* Button.swift in Sources */,
 				B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */,
+				B092390224BA8F2D0064F482 /* SteppingSlider.swift in Sources */,
 				B092390024B46DE10064F482 /* Color.swift in Sources */,
 				B09238FC24B3C7550064F482 /* Task.swift in Sources */,
 				B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */,

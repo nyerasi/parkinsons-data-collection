@@ -170,4 +170,8 @@ class FingerTapTestViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindFromRest( _ seg: UIStoryboardSegue) {
+        // from rest view controller after rating
+    }
 }

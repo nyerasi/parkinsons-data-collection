@@ -13,19 +13,14 @@ import Foundation
  https://rubygarage.org/blog/swift-design-patterns
  */
 
+// GOAL: use these abtractions to clean up the app's navigation and write unit tests
+
 // for use in navigation
 enum MovementTask: String {
     case pronationSupination = "Pronation-Supination"
     case fingerTapOne = "Finger Tap: One Target"
     case fingerTapTwo = "Finger Tap: Two Targets"
-}
-
-enum TaskState {
-    case notStarted
-    case leftSideDone
-    case rightSideDone
-    case bothSidesDone
-    case isRated
+    case questionnaire = "Symptom Questionnaire"
 }
 
 struct TaskInformation {
@@ -46,13 +41,56 @@ struct MotionTaskData {
     var yaw: Double
 }
 
+enum CurrentState {
+    case start
+    case firstDurationLeftSide
+    case firstDurationRightSide
+    case secondDurationLeftSide
+    case secondDurationRightSide
+    case rating
+}
+
+/*
+ case notStarted
+ case leftSideDone
+ case rightSideDone
+ case bothSidesDone
+ case isRated
+ */
+
+enum TaskState {
+    case start
+    case left
+    case right
+    case done
+}
+
+enum ExamState {
+    case notStarted
+    case leftSideDone
+    case rightSideDone
+    case bothSidesDone
+    case isRated
+}
+
 class Task {
     var task: MovementTask
     var information: TaskInformation
     var state: TaskState
+    
+    init() {
+        self.task = .pronationSupination
+        self.information = TaskInformation(taskName: "Supination-Pronation", taskNumber: 1, taskInstructions: "Alternate between pronation and supination of the hand", taskGoal: "Perform the task as quickly and try to maintain full range-of-motion!", taskDuration: 10)
+        self.state = .start
+        
+    }
+    
     init(task: MovementTask, information: TaskInformation, state: TaskState) {
         self.task = task
         self.information = information
         self.state = state
     }
 }
+
+// shared object for managing state
+var task = Task()

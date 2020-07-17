@@ -21,12 +21,15 @@
 		B08507EC24B12ACC00371BE1 /* ParkinsonsDataCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08507EB24B12ACC00371BE1 /* ParkinsonsDataCollectionTests.swift */; };
 		B08507F724B12ACC00371BE1 /* ParkinsonsDataCollectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08507F624B12ACC00371BE1 /* ParkinsonsDataCollectionUITests.swift */; };
 		B085080724B12AE900371BE1 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080624B12AE900371BE1 /* Button.swift */; };
-		B085080924B1359000371BE1 /* TaskOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080824B1359000371BE1 /* TaskOverviewViewController.swift */; };
+		B085080924B1359000371BE1 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080824B1359000371BE1 /* OverviewViewController.swift */; };
 		B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080C24B135F600371BE1 /* TaskViewModel.swift */; };
 		B085080F24B136F300371BE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085080E24B136F300371BE1 /* Constants.swift */; };
 		B09238FC24B3C7550064F482 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FB24B3C7550064F482 /* Task.swift */; };
 		B092390024B46DE10064F482 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09238FF24B46DE10064F482 /* Color.swift */; };
 		B092390224BA8F2D0064F482 /* SteppingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092390124BA8F2D0064F482 /* SteppingSlider.swift */; };
+		B0A6360824C1392B00B9AFEF /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6360724C1392B00B9AFEF /* NavigationCoordinator.swift */; };
+		B0A6361724C19BC100B9AFEF /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6361624C19BC100B9AFEF /* QuestionnaireViewController.swift */; };
+		B0A6361924C19C4F00B9AFEF /* NewExamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6361824C19C4F00B9AFEF /* NewExamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,12 +70,15 @@
 		B08507F624B12ACC00371BE1 /* ParkinsonsDataCollectionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkinsonsDataCollectionUITests.swift; sourceTree = "<group>"; };
 		B08507F824B12ACC00371BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B085080624B12AE900371BE1 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		B085080824B1359000371BE1 /* TaskOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskOverviewViewController.swift; sourceTree = "<group>"; };
+		B085080824B1359000371BE1 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		B085080C24B135F600371BE1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		B085080E24B136F300371BE1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B09238FB24B3C7550064F482 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B09238FF24B46DE10064F482 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B092390124BA8F2D0064F482 /* SteppingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppingSlider.swift; sourceTree = "<group>"; };
+		B0A6360724C1392B00B9AFEF /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		B0A6361624C19BC100B9AFEF /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
+		B0A6361824C19C4F00B9AFEF /* NewExamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +109,14 @@
 		B051803024B2D493000C86F3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B085080824B1359000371BE1 /* TaskOverviewViewController.swift */,
+				B085080824B1359000371BE1 /* OverviewViewController.swift */,
 				B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */,
 				B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */,
 				B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */,
 				B051803124B2D673000C86F3 /* RestViewController.swift */,
 				B029EA3B24C12AE9007E516F /* TimedActivityViewController.swift */,
+				B0A6361624C19BC100B9AFEF /* QuestionnaireViewController.swift */,
+				B0A6361824C19C4F00B9AFEF /* NewExamViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -136,6 +144,11 @@
 		B08507D024B12ACB00371BE1 /* ParkinsonsDataCollection */ = {
 			isa = PBXGroup;
 			children = (
+				B0A6360D24C1477600B9AFEF /* Rest */,
+				B0A6360C24C1476D00B9AFEF /* Rate Activity */,
+				B0A6360B24C1476400B9AFEF /* Supination Pronation */,
+				B0A6360A24C1475F00B9AFEF /* Finger Tap */,
+				B0A6360924C1475700B9AFEF /* Task Overview */,
 				B051803024B2D493000C86F3 /* View Controllers */,
 				B085080524B12ADC00371BE1 /* View */,
 				B085080424B12AD600371BE1 /* Model */,
@@ -146,6 +159,7 @@
 				B08507DF24B12ACC00371BE1 /* LaunchScreen.storyboard */,
 				B08507E224B12ACC00371BE1 /* Info.plist */,
 				B08507DA24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld */,
+				B0A6360724C1392B00B9AFEF /* NavigationCoordinator.swift */,
 			);
 			path = ParkinsonsDataCollection;
 			sourceTree = "<group>";
@@ -171,6 +185,7 @@
 		B085080424B12AD600371BE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B09238FB24B3C7550064F482 /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,11 +196,45 @@
 				B085080624B12AE900371BE1 /* Button.swift */,
 				B085080C24B135F600371BE1 /* TaskViewModel.swift */,
 				B085080E24B136F300371BE1 /* Constants.swift */,
-				B09238FB24B3C7550064F482 /* Task.swift */,
 				B09238FF24B46DE10064F482 /* Color.swift */,
 				B092390124BA8F2D0064F482 /* SteppingSlider.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B0A6360924C1475700B9AFEF /* Task Overview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Task Overview";
+			sourceTree = "<group>";
+		};
+		B0A6360A24C1475F00B9AFEF /* Finger Tap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Finger Tap";
+			sourceTree = "<group>";
+		};
+		B0A6360B24C1476400B9AFEF /* Supination Pronation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supination Pronation";
+			sourceTree = "<group>";
+		};
+		B0A6360C24C1476D00B9AFEF /* Rate Activity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Rate Activity";
+			sourceTree = "<group>";
+		};
+		B0A6360D24C1477600B9AFEF /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,16 +368,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B085080924B1359000371BE1 /* TaskOverviewViewController.swift in Sources */,
+				B085080924B1359000371BE1 /* OverviewViewController.swift in Sources */,
 				B085080D24B135F600371BE1 /* TaskViewModel.swift in Sources */,
 				B085080724B12AE900371BE1 /* Button.swift in Sources */,
 				B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */,
+				B0A6361724C19BC100B9AFEF /* QuestionnaireViewController.swift in Sources */,
 				B092390224BA8F2D0064F482 /* SteppingSlider.swift in Sources */,
 				B092390024B46DE10064F482 /* Color.swift in Sources */,
 				B09238FC24B3C7550064F482 /* Task.swift in Sources */,
+				B0A6361924C19C4F00B9AFEF /* NewExamViewController.swift in Sources */,
 				B029EA3C24C12AE9007E516F /* TimedActivityViewController.swift in Sources */,
 				B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */,
 				B08507D424B12ACB00371BE1 /* SceneDelegate.swift in Sources */,
+				B0A6360824C1392B00B9AFEF /* NavigationCoordinator.swift in Sources */,
 				B08507DC24B12ACB00371BE1 /* ParkinsonsDataCollection.xcdatamodeld in Sources */,
 				B051802D24B2CE0F000C86F3 /* RotationTestViewController.swift in Sources */,
 				B051802F24B2D48A000C86F3 /* ClinicalRatingViewController.swift in Sources */,

@@ -14,17 +14,22 @@ class ClinicalRatingViewController: UIViewController {
     @IBOutlet var taskNumberLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var ratingSlider: UISlider!
-    @IBOutlet var nemeTextField: UITextField!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var submitButton: UIButton!
     
-    var viewModel: TaskViewModel?
     var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTaskDetails()
+        configureButton()
         configureTextField()
         configureSlider()
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "toRest", sender: self)
     }
     
     func configureTextField() {
@@ -35,7 +40,7 @@ class ClinicalRatingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // add delegate to TextField
-        nemeTextField.delegate = self
+        nameTextField.delegate = self
     }
     
     func configureSlider() {
@@ -86,16 +91,19 @@ class ClinicalRatingViewController: UIViewController {
     }
     
     private func configureTaskDetails() {
-        if let viewModel = viewModel {
-            taskNumberLabel.text = "\(viewModel.taskNumber)"
-            subtitleLabel.text = "\(viewModel.taskName)"
-        }
+        taskNumberLabel.text = "\(viewModel.taskNumber)"
+        subtitleLabel.text = "\(viewModel.taskName)"
         taskNumberLabel.textColor = lightBlueColor
         taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3
         taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
+    }
+    
+    private func configureButton() {
+        submitButton.layer.masksToBounds = true
+        submitButton.layer.cornerRadius = 10
     }
     
     // for finger tap — ask about open/close hands, fingers
@@ -111,7 +119,11 @@ class ClinicalRatingViewController: UIViewController {
      */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // navigation
+        // segue to appropriate task
+        if let dest = segue.destination as? RestViewController {
+            // what should we configure here?
+        }
+        // where else could this segue to?
     }
     
 }

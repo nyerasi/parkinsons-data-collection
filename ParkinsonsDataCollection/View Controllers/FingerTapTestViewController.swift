@@ -24,8 +24,7 @@ class FingerTapTestViewController: UIViewController {
     @IBOutlet var taskNumberLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var targetView: UIView!
-    
-    var viewModel: TaskViewModel?
+    @IBOutlet var startButton: UIButton!
     
     var targetIsEnabled: Bool = false
     var count: Int = 10
@@ -39,6 +38,7 @@ class FingerTapTestViewController: UIViewController {
         super.viewDidLoad()
         
         configureTaskDetails()
+        configureButton()
         disableTarget()
     }
     
@@ -64,10 +64,8 @@ class FingerTapTestViewController: UIViewController {
     }
     
     private func configureTaskDetails() {
-        if let viewModel = viewModel {
-            taskNumberLabel.text = "\(viewModel.taskNumber)"
-            count = viewModel.taskDuration
-        }
+        taskNumberLabel.text = "\(viewModel.taskNumber)"
+        timeLabel.text = "00:\(viewModel.taskDuration)"
         taskNumberLabel.textColor = lightBlueColor
         taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
@@ -76,11 +74,16 @@ class FingerTapTestViewController: UIViewController {
         taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
     }
     
+    private func configureButton() {
+        startButton.layer.masksToBounds = true
+        startButton.layer.cornerRadius = 10
+    }
+    
     @IBAction func targetTapped(_ sender: UIButton) {
         // buttonTaps [button tag (1 - 5): number of taps]
         let currentValue = buttonTaps[sender.tag] ?? 0
         buttonTaps[sender.tag] = currentValue + 1
-
+        
         // testing UIButton animations — shorten to one iteration?
         // sender.flash()
         
@@ -117,20 +120,22 @@ class FingerTapTestViewController: UIViewController {
         for entry in buttonTaps {
             totalTaps += entry.value
         }
-       let totalAccuracy = Double(buttonTaps[5] ?? 0) / Double(totalTaps)
+        let totalAccuracy = Double(buttonTaps[5] ?? 0) / Double(totalTaps)
         return "\(totalAccuracy * 100)%"
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        // create stopwatch timer
-        if let viewModel = viewModel {
-            self.count = viewModel.taskDuration
+        startButton.isEnabled = false
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.startButton.alpha = 0
         }
+        
+        self.count = viewModel.taskDuration
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             self.updateStopwatch()
         })
         
-        // testing
+        // add color, enable buttons in target
         enableTarget()
     }
     
@@ -144,7 +149,7 @@ class FingerTapTestViewController: UIViewController {
             // present alert, disable target
             presentCompletedAlert()
             disableTarget()
-        } else if count <= 10 {
+        } else if count < 10 {
             timeLabel.text = "00:0\(count)"
         } else {
             timeLabel.text = "00:\(count)"
@@ -163,16 +168,10 @@ class FingerTapTestViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // to rating, pass along view model!
-        if let viewModel = viewModel {
-            // segue to appropriate task
-            if let dest = segue.destination as? ClinicalRatingViewController {
-                dest.viewModel = self.viewModel
-                // what updates do we have to do for the ViewModel?
-            }
+        // segue to appropriate task
+        
+        if let dest = segue.destination as? ClinicalRatingViewController {
+            // what to do here?
         }
-    }
-    
-    @IBAction func unwindFromRest( _ seg: UIStoryboardSegue) {
-        // from rest view controller after rating
     }
 }

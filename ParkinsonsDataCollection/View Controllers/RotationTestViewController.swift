@@ -17,12 +17,12 @@ class RotationTestViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
+    @IBOutlet var startButton: UIButton!
+    
     @IBOutlet var arrowImageView: UIImageView!
     @IBOutlet var yawLabel: UILabel!
     @IBOutlet var pitchLabel: UILabel!
     @IBOutlet var rollLabel: UILabel!
-    
-    var viewModel: TaskViewModel?
     
     var count: Int = 10
     var timer = Timer()
@@ -31,14 +31,15 @@ class RotationTestViewController: UIViewController {
     var motion = CMMotionManager()
     var queue = OperationQueue.main
     var motionData = [MotionTaskData]()
-        
-   // file for opening and writing data?
-
+    
+    // file for opening and writing data?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         configureTaskDetails()
+        configureButton()
     }
     
     func writeCSV() {
@@ -65,10 +66,10 @@ class RotationTestViewController: UIViewController {
         let rateAlertAction = UIAlertAction(title: "Rate this task", style: .default) { [weak self] (action) in
             self?.performSegue(withIdentifier: "toRating", sender: self)
         }
-
+        
         presentAlert("Great work!", "You've completed this task", [rateAlertAction])
     }
-        
+    
     func startQueuedUpdates() {
         // https://developer.apple.com/documentation/coremotion/getting_processed_device-motion_data?language=objc
         let updateFrequency = 1.0 / 60.0
@@ -106,14 +107,17 @@ class RotationTestViewController: UIViewController {
         }
     }
     
-    
     @IBAction func startButtonTapped(_ sender: Any) {
-        if let viewModel = viewModel {
-            self.count = viewModel.taskDuration
+        startButton.isEnabled = false
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.startButton.alpha = 0
         }
+        
+        self.count = viewModel.taskDuration
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             self.updateStopwatch()
         })
+        
         startQueuedUpdates()
     }
     
@@ -132,7 +136,7 @@ class RotationTestViewController: UIViewController {
         // format counter for label
         if count <= 0 {
             stopActivity()
-        } else if count <= 10 {
+        } else if count < 10 {
             timeLabel.text = "00:0\(count)"
         } else {
             timeLabel.text = "00:\(count)"
@@ -143,7 +147,7 @@ class RotationTestViewController: UIViewController {
         // calculate score and accuracy
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: .alert)
-
+        
         for action in actions {
             alertController.addAction(action)
         }
@@ -151,9 +155,8 @@ class RotationTestViewController: UIViewController {
     }
     
     private func configureTaskDetails() {
-        if let viewModel = viewModel {
-            taskNumberLabel.text = "\(viewModel.taskNumber)"
-        }
+        taskNumberLabel.text = "\(viewModel.taskNumber)"
+        timeLabel.text = "00:\(viewModel.taskDuration)"
         
         taskNumberLabel.textColor = lightBlueColor
         taskNumberOuterView.backgroundColor = .clear
@@ -161,6 +164,11 @@ class RotationTestViewController: UIViewController {
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3
         taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
+    }
+    
+    private func configureButton() {
+        startButton.layer.masksToBounds = true
+        startButton.layer.cornerRadius = 10
     }
     
     
@@ -177,11 +185,4 @@ class RotationTestViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // do something
     }
-    
-    @IBAction func unwindFromRest( _ seg: UIStoryboardSegue) {
-        // from rest view controller after rating
-    }
-    
 }
-
-

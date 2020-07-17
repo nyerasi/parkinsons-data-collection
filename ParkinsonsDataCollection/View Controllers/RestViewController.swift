@@ -9,26 +9,55 @@
 import UIKit
 
 class RestViewController: UIViewController {
+    
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var taskNumberLabel: UILabel!
+    @IBOutlet var taskNumberOuterView: UIView!
+    @IBOutlet var subtitleLabel: UILabel!
+    @IBOutlet var doneButton: UIButton!
     
-    var viewModel: TaskViewModel?
-    
-    var count: Int = 10
+    var count: Int = 30
     var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTaskDetails()
+        configureButton()
         startStopwatch()
+        
+        doneButton.alpha = 0
+        doneButton.isEnabled = false
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        updateTask()
+        
+        if viewModel.task == .questionnaire {
+            performSegue(withIdentifier: "toQuestionnaire", sender: self)
+        } else {
+            performSegue(withIdentifier: "unwindFromRest", sender: self)
+        }
+    }
+    
+    private func configureTaskDetails() {
+        taskNumberLabel.text = "\(viewModel.taskNumber)"
+        timeLabel.text = "00:\(count)"
+        //            subtitleLabel.text = "\(viewModel.taskName)"
+        taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.backgroundColor = .clear
+        taskNumberOuterView.layer.cornerRadius = 30
+        taskNumberOuterView.layer.masksToBounds = true
+        taskNumberOuterView.layer.borderWidth = 3
+        taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
+    }
+    
+    private func configureButton() {
+        doneButton.layer.masksToBounds = true
+        doneButton.layer.cornerRadius = 10
+    }
+    
     func startStopwatch() {
-        /*
-         if let viewModel = viewModel {
-         self.count = viewModel.taskDuration
-         }
-         */
-        self.count = 30
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             self.updateStopwatch()
         })
@@ -41,12 +70,30 @@ class RestViewController: UIViewController {
             timer.invalidate()
             timeLabel.text = "00:00"
             
-            // present alert/segue to task overview/other side
-        } else if count <= 10 {
+            // enable segue to task overview/other side
+            UIView.animate(withDuration: 0.5) { [weak self] in
+                self?.doneButton.alpha = 1
+            }
+            doneButton.isEnabled = true
+        } else if count < 10 {
             timeLabel.text = "00:0\(count)"
         } else {
             timeLabel.text = "00:\(count)"
         }
+    }
+    
+    func updateTask() {
+        // marks the respective side as done and checks to see if the task should be updated by modifying the view model
+        switch viewModel.state {
+        case .left:
+            viewModel.leftSideDone = true
+        case .right:
+            viewModel.rightSideDone = true
+        default:
+            break
+        }
+        
+        viewModel.updateTask()
     }
     
     

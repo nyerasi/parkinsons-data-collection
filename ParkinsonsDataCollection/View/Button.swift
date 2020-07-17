@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class ContextButton: UIButton {
+class ContextButtonView: UIView {
+    // see figma for information
     override init(frame: CGRect) {
         // configure properties here
         // should have title, button text, isEnabled, style (primary/secondary)

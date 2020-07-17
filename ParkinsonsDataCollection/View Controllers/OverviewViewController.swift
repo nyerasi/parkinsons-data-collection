@@ -34,7 +34,8 @@ class OverviewViewController: UIViewController {
         configureTaskDetails()
         configureButtons()
         updateButtons()
-        // Do any additional setup after loading the view.
+
+        navigationItem.hidesBackButton = true
     }
     
     // prevent other view controllers from rotating UI — info.plist
@@ -132,7 +133,7 @@ class OverviewViewController: UIViewController {
             rightSideStartButton.isEnabled = false
         } else {
             rightSideOuterView.backgroundColor = darkBlueColor
-            leftSideStartButton.backgroundColor = .white
+            rightSideStartButton.backgroundColor = .white
             rightSideStartButton.layer.borderWidth = 0
             
             rightSideStartButton.setTitle("START", for: .normal)

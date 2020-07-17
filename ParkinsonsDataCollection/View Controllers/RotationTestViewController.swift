@@ -37,9 +37,10 @@ class RotationTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         configureTaskDetails()
         configureButton()
+        
+        navigationItem.hidesBackButton = true
     }
     
     func writeCSV() {

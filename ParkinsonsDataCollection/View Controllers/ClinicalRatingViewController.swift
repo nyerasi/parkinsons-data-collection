@@ -13,11 +13,14 @@ class ClinicalRatingViewController: UIViewController {
     @IBOutlet var taskNumberOuterView: UIView!
     @IBOutlet var taskNumberLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var ratingSlider: UISlider!
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
+    @IBOutlet var radioButtonStackView: UIStackView!
     
     var activeTextField: UITextField?
+    
+    // for radio button rating system
+    var currentlySelectedButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +28,36 @@ class ClinicalRatingViewController: UIViewController {
         configureTaskDetails()
         configureButton()
         configureTextField()
-        configureSlider()
+        configureRadioButtons()
+        
+        navigationItem.hidesBackButton = true
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
+        let alertAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+
+        // check rating is not empty
+        guard let button = currentlySelectedButton else {
+            presentAlert("Whoops!", "Please rate the task before continuing", alertAction)
+            return
+        }
+        
+        // check name field is not empty
+        guard let name = nameTextField.text, name.count > 0 else {
+            presentAlert("Whoops!", "Please type in the rater's name before continuing", alertAction)
+            return
+        }
+        
         performSegue(withIdentifier: "toRest", sender: self)
+    }
+    
+    @IBAction func radioButtonTapped(_ sender: UIButton) {
+        // GOAL: only one button should be selected at a time
+        if let lastSelected = currentlySelectedButton, lastSelected != sender {
+            deselectRadioButton(lastSelected)
+        }
+        selectRadioButton(sender)
+        currentlySelectedButton = sender
     }
     
     func configureTextField() {
@@ -43,18 +71,41 @@ class ClinicalRatingViewController: UIViewController {
         nameTextField.delegate = self
     }
     
-    func configureSlider() {
-        // use custom Slider!
-        let values: [Float] = [0, 1, 2, 3, 4]
-        let slider = SteppingSlider(frame: ratingSlider.frame, values: values, callback: { (currentValue) in
-            print(currentValue)
-        })
-        
-        ratingSlider.addTarget(self, action: #selector(sliderUpdated), for: .valueChanged)
+    func selectRadioButton(_ button: UIButton) {
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = button.frame.height / 2
+        UIView.animate(withDuration: 0.2) {
+            button.layer.borderColor = darkBlueColor.cgColor
+            button.backgroundColor = darkBlueColor
+        }
     }
     
-    @objc func sliderUpdated() {
-        // round up value and set animated
+    func deselectRadioButton(_ button: UIButton) {
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = button.frame.height / 2
+        button.layer.borderWidth = 2
+        UIView.animate(withDuration: 0.2) {
+            button.layer.borderColor = darkBlueColor.cgColor
+            button.backgroundColor = .white
+        }
+    }
+    
+    func configureRadioButtons() {
+        for subview in radioButtonStackView.arrangedSubviews {
+            if let button = subview as? UIButton {
+                deselectRadioButton(button)
+            }
+        }
+    }
+    
+    func presentAlert(_ title: String, _ message: String, _ action: UIAlertAction) {
+        // calculate score and accuracy
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: .alert)
+        
+        alertController.addAction(action)
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {

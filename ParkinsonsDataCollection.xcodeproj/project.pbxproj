@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B029EA3C24C12AE9007E516F /* TimedActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029EA3B24C12AE9007E516F /* TimedActivityViewController.swift */; };
 		B051802A24B2B902000C86F3 /* FingerTapTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */; };
 		B051802D24B2CE0F000C86F3 /* RotationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */; };
 		B051802F24B2D48A000C86F3 /* ClinicalRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */; };
@@ -50,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B029EA3B24C12AE9007E516F /* TimedActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedActivityViewController.swift; sourceTree = "<group>"; };
 		B051802824B2B902000C86F3 /* FingerTapTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerTapTestViewController.swift; sourceTree = "<group>"; };
 		B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTestViewController.swift; sourceTree = "<group>"; };
 		B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClinicalRatingViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				B051802C24B2CE0F000C86F3 /* RotationTestViewController.swift */,
 				B051802E24B2D48A000C86F3 /* ClinicalRatingViewController.swift */,
 				B051803124B2D673000C86F3 /* RestViewController.swift */,
-				B029EA3B24C12AE9007E516F /* TimedActivityViewController.swift */,
 				B0A6361624C19BC100B9AFEF /* QuestionnaireViewController.swift */,
 				B0A6361824C19C4F00B9AFEF /* NewExamViewController.swift */,
 			);
@@ -377,7 +374,6 @@
 				B092390024B46DE10064F482 /* Color.swift in Sources */,
 				B09238FC24B3C7550064F482 /* Task.swift in Sources */,
 				B0A6361924C19C4F00B9AFEF /* NewExamViewController.swift in Sources */,
-				B029EA3C24C12AE9007E516F /* TimedActivityViewController.swift in Sources */,
 				B08507D224B12ACB00371BE1 /* AppDelegate.swift in Sources */,
 				B08507D424B12ACB00371BE1 /* SceneDelegate.swift in Sources */,
 				B0A6360824C1392B00B9AFEF /* NavigationCoordinator.swift in Sources */,

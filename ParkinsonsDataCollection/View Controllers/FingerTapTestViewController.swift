@@ -40,6 +40,8 @@ class FingerTapTestViewController: UIViewController {
         configureTaskDetails()
         configureButton()
         disableTarget()
+        
+        navigationItem.hidesBackButton = true
     }
     
     func enableTarget() {

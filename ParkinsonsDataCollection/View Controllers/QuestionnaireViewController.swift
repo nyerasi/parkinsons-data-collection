@@ -16,7 +16,8 @@ class QuestionnaireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTaskDetails()
-        // Do any additional setup after loading the view.
+        
+        navigationItem.hidesBackButton = true
     }
     
     private func configureTaskDetails() {

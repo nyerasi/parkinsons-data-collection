@@ -27,7 +27,8 @@ class RestViewController: UIViewController {
         
         doneButton.alpha = 0
         doneButton.isEnabled = false
-        // Do any additional setup after loading the view.
+        
+        navigationItem.hidesBackButton = true
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {

@@ -28,7 +28,7 @@ class TaskOverviewViewController: UIViewController {
     @IBOutlet var rightSideStartButton: UIButton!
     @IBOutlet var leftSideStartButton: UIButton!
     
-    var viewModel: TaskViewModel? = FingerTapTestModel
+    var viewModel: TaskViewModel? = PronationTestModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,8 @@ class TaskOverviewViewController: UIViewController {
         updateButtons()
         // Do any additional setup after loading the view.
     }
+    
+    // prevent other view controllers from rotating UI — info.plist
     
     @IBAction func startRightSide(_ sender: Any) {
         if let viewModel = viewModel {
@@ -75,6 +77,7 @@ class TaskOverviewViewController: UIViewController {
         }
         
         taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3

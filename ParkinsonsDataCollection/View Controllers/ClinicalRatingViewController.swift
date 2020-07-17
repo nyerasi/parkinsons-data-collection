@@ -91,6 +91,7 @@ class ClinicalRatingViewController: UIViewController {
             subtitleLabel.text = "\(viewModel.taskName)"
         }
         taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3

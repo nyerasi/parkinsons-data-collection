@@ -17,6 +17,11 @@ class RotationTestViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
+    @IBOutlet var arrowImageView: UIImageView!
+    @IBOutlet var yawLabel: UILabel!
+    @IBOutlet var pitchLabel: UILabel!
+    @IBOutlet var rollLabel: UILabel!
+    
     var viewModel: TaskViewModel?
     
     var count: Int = 10
@@ -25,10 +30,10 @@ class RotationTestViewController: UIViewController {
     // CM manager object & queue — should we be using current or main?
     var motion = CMMotionManager()
     var queue = OperationQueue.main
-    
-    // diff: accelerometer data
-    var motionActivityManager: CMMotionActivityManager?
-    
+    var motionData = [MotionTaskData]()
+        
+   // file for opening and writing data?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,41 +41,71 @@ class RotationTestViewController: UIViewController {
         configureTaskDetails()
     }
     
-    /*
-    func configureMotionManager() {
-        // get device processed accelerometer and gyroscope data
-        motionManager = CMMotionManager()
-        motionManager?.startAccelerometerUpdates(to: .main, withHandler: { (data, error) in
-            if let error = error {
-                let alertAction = UIAlertAction(title: "Okay", style: .default) { (action) in
-                    self.dismiss(animated: true, completion: nil)
-                }
-                self.presentAlert("Something went wrong","\(error.localizedDescription)", alertAction )
-            }
-        })
+    func writeCSV() {
+        let fileName = "SupinationPronation.csv"
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        var motionDataText = "Date,UserAccelerationX,UserAccelerationY,UserAccelerationZ,Roll,Pitch,Yaw\n"
+        
+        // loop through motionDataText
+        for motion in motionData {
+            let newLine = "\(motion.date),\(motion.userAccelerationX),\(motion.userAccelerationY),\(motion.userAccelerationZ),\(motion.roll),\(motion.pitch),\(motion.yaw)\n"
+            motionDataText.append(newLine)
+        }
+        
+        do {
+            try motionDataText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            // present alert (reset state of view controller activity?)
+            let retryAlertAction = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
+            presentAlert("Something went wrong!", error.localizedDescription, [retryAlertAction])
+        }
+        
+        // how should we organize this?
+        // present alert, present navigation, incorporate sharing action
+        let rateAlertAction = UIAlertAction(title: "Rate this task", style: .default) { [weak self] (action) in
+            self?.performSegue(withIdentifier: "toRating", sender: self)
+        }
+
+        presentAlert("Great work!", "You've completed this task", [rateAlertAction])
     }
- */
-    
+        
     func startQueuedUpdates() {
         // https://developer.apple.com/documentation/coremotion/getting_processed_device-motion_data?language=objc
+        let updateFrequency = 1.0 / 60.0
+        let motionHandler: CMDeviceMotionHandler = { [weak self] (motion, error) in
+            if let validData = motion {
+                let newData = MotionTaskData(date: Date(),
+                                             userAccelerationX: validData.userAcceleration.x,
+                                             userAccelerationY: validData.userAcceleration.y,
+                                             userAccelerationZ: validData.userAcceleration.z,
+                                             roll: validData.attitude.roll,
+                                             pitch: validData.attitude.pitch, yaw: validData.attitude.yaw)
+                
+                self?.motionData.append(newData)
+                
+                // update UI to reflect rotation motion data
+                self?.rollLabel.text = "Roll: \(newData.roll)"
+                self?.pitchLabel.text = "Pitch: \(newData.pitch)"
+                self?.yawLabel.text = "Yaw: \(newData.yaw)"
+                
+                var transform: CATransform3D
+                transform = CATransform3DMakeRotation(CGFloat(newData.pitch), 1, 0, 0) // X
+                transform = CATransform3DRotate(transform, CGFloat(newData.roll), 0, 1, 0) // Y
+                transform = CATransform3DRotate(transform, CGFloat(newData.yaw), 0, 0, 1) // Z
+                
+                self?.arrowImageView.layer.transform = transform
+            }
+        }
+        
         if motion.isDeviceMotionAvailable {
-            self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
+            self.motion.deviceMotionUpdateInterval = updateFrequency
             self.motion.showsDeviceMovementDisplay = true
-            self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
-                                                 to: self.queue, withHandler: { (data, error) in
-                                                    // Make sure the data is valid before accessing it.
-                                                    if let validData = data {
-                                                        // Get the attitude relative to the magnetic north reference frame.
-                                                        let roll = validData.attitude.roll
-                                                        let pitch = validData.attitude.pitch
-                                                        let yaw = validData.attitude.yaw
-                                                        
-                                                        // Use the motion data in your app.
-                                                        let transform = CATransform3D(m11: <#T##CGFloat#>, m12: <#T##CGFloat#>, m13: <#T##CGFloat#>, m14: <#T##CGFloat#>, m21: <#T##CGFloat#>, m22: <#T##CGFloat#>, m23: <#T##CGFloat#>, m24: <#T##CGFloat#>, m31: <#T##CGFloat#>, m32: <#T##CGFloat#>, m33: <#T##CGFloat#>, m34: <#T##CGFloat#>, m41: <#T##CGFloat#>, m42: <#T##CGFloat#>, m43: <#T##CGFloat#>, m44: <#T##CGFloat#>)
-                                                    }
-            })
+            // test different attitude reference planes (magnetic north/true north/arbitrary)
+            self.motion.startDeviceMotionUpdates(using: .xArbitraryZVertical,
+                                                 to: self.queue, withHandler: motionHandler)
         }
     }
+    
     
     @IBAction func startButtonTapped(_ sender: Any) {
         if let viewModel = viewModel {
@@ -79,20 +114,24 @@ class RotationTestViewController: UIViewController {
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             self.updateStopwatch()
         })
+        startQueuedUpdates()
+    }
+    
+    func stopActivity() {
+        // end device motion updates, invalidate timer, present alert
+        motion.stopDeviceMotionUpdates()
+        timer.invalidate()
+        timeLabel.text = "00:00"
+        
+        // write data to CSV
+        writeCSV()
     }
     
     @objc private func updateStopwatch() {
         count -= 1
         // format counter for label
         if count <= 0 {
-            timer.invalidate()
-            timeLabel.text = "00:00"
-            
-            // present alert, present navigation
-            let alertAction = UIAlertAction(title: "Rate this task", style: .default) { [weak self] (action) in
-                self?.performSegue(withIdentifier: "toRating", sender: self)
-            }
-            presentAlert("Great work!", "You've completed this task", alertAction)
+            stopActivity()
         } else if count <= 10 {
             timeLabel.text = "00:0\(count)"
         } else {
@@ -100,20 +139,14 @@ class RotationTestViewController: UIViewController {
         }
     }
     
-    func presentAlert(_ title: String, _ message: String, _ action: UIAlertAction) {
+    func presentAlert(_ title: String, _ message: String, _ actions: [UIAlertAction]) {
         // calculate score and accuracy
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: .alert)
-        
-        // default action (to rate view controller)
-        /*
-         let rateAction = UIAlertAction(title: "Rate this task", style: .default) { [weak self] (action) in
-         // segue to rating screen
-         self?.performSegue(withIdentifier: "toRating", sender: self)
-         }
-         */
-        
-        alertController.addAction(action)
+
+        for action in actions {
+            alertController.addAction(action)
+        }
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -123,6 +156,7 @@ class RotationTestViewController: UIViewController {
         }
         
         taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3

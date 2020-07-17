@@ -36,6 +36,16 @@ struct TaskInformation {
     var taskDuration: Int
 }
 
+struct MotionTaskData {
+    var date: Date
+    var userAccelerationX: Double
+    var userAccelerationY: Double
+    var userAccelerationZ: Double
+    var roll: Double
+    var pitch: Double
+    var yaw: Double
+}
+
 class Task {
     var task: MovementTask
     var information: TaskInformation

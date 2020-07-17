@@ -69,6 +69,7 @@ class FingerTapTestViewController: UIViewController {
             count = viewModel.taskDuration
         }
         taskNumberLabel.textColor = lightBlueColor
+        taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
         taskNumberOuterView.layer.masksToBounds = true
         taskNumberOuterView.layer.borderWidth = 3

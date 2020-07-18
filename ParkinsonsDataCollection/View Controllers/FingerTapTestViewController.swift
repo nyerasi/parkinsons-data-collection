@@ -34,6 +34,8 @@ class FingerTapTestViewController: UIViewController {
     // to log timestamps of each target's taps
     var targetTaps = [Int: [Date]]()
     
+    var fingerTapData = [FingerTapData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,15 +85,14 @@ class FingerTapTestViewController: UIViewController {
     
     @IBAction func targetTapped(_ sender: UIButton) {
         // buttonTaps [button tag (1 - 5): number of taps]
-        let currentValue = buttonTaps[sender.tag] ?? 0
-        buttonTaps[sender.tag] = currentValue + 1
-        
+       
         // testing UIButton animations — shorten to one iteration?
         // sender.flash()
         
-        // log timestamps as well — what's going to make this easiest to process/analyze?
-        let currentDate = Date()
-        targetTaps[sender.tag]?.append(currentDate)
+        let currentData = FingerTapData(date: Date(), value: sender.tag)
+        fingerTapData.append(currentData)
+        
+        targetTaps[sender.tag]?.append(Date())
     }
     
     func presentCompletedAlert() {
@@ -173,7 +174,7 @@ class FingerTapTestViewController: UIViewController {
         // segue to appropriate task
         
         if let dest = segue.destination as? ClinicalRatingViewController {
-            // what to do here?
+            dest.fingerTapData = fingerTapData
         }
     }
 }

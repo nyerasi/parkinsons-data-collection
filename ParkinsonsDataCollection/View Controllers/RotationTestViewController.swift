@@ -56,6 +56,7 @@ class RotationTestViewController: UIViewController {
         
         do {
             try motionDataText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+
         } catch {
             // present alert (reset state of view controller activity?)
             let retryAlertAction = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
@@ -70,6 +71,8 @@ class RotationTestViewController: UIViewController {
         
         presentAlert("Great work!", "You've completed this task", [rateAlertAction])
     }
+    
+    
     
     func startQueuedUpdates() {
         // https://developer.apple.com/documentation/coremotion/getting_processed_device-motion_data?language=objc
@@ -185,5 +188,8 @@ class RotationTestViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // do something
+        if let dest = segue.destination as? ClinicalRatingViewController {
+            dest.motionData = motionData
+        }
     }
 }

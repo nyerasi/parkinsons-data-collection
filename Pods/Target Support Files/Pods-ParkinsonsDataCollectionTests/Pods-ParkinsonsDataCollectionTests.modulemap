@@ -1,0 +1,6 @@
+framework module Pods_ParkinsonsDataCollectionTests {
+  umbrella header "Pods-ParkinsonsDataCollectionTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

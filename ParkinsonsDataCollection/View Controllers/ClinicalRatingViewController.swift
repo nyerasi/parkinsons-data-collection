@@ -19,6 +19,9 @@ class ClinicalRatingViewController: UIViewController {
     
     var activeTextField: UITextField?
     
+    var motionData: [MotionTaskData]?
+    var fingerTapData: [FingerTapData]?
+    
     // for radio button rating system
     var currentlySelectedButton: UIButton?
     
@@ -30,14 +33,14 @@ class ClinicalRatingViewController: UIViewController {
         configureTextField()
         configureRadioButtons()
         
-        navigationItem.hidesBackButton = true
+//        navigationItem.hidesBackButton = true
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         let alertAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
 
         // check rating is not empty
-        guard let button = currentlySelectedButton else {
+        guard let score = currentlySelectedButton?.tag else {
             presentAlert("Whoops!", "Please rate the task before continuing", alertAction)
             return
         }
@@ -47,8 +50,25 @@ class ClinicalRatingViewController: UIViewController {
             presentAlert("Whoops!", "Please type in the rater's name before continuing", alertAction)
             return
         }
-        
+        finalizeRating(rating: score, rater: name)
         performSegue(withIdentifier: "toRest", sender: self)
+    }
+    
+    func finalizeRating(rating: Int, rater: String) {
+        // use view model to track activity
+        if let motionData = motionData {
+            // segued from Pronation Supination
+            let finishedMotionTest = MotionTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: motionData)
+            
+            model.writeMovementTaskData(test: finishedMotionTest)
+            
+        } else if let fingerTapData = fingerTapData {
+            // segued from Finger Tap (1 or 2 target)
+            let finishedFingerTapTest = FingerTapTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: fingerTapData)
+            
+            model.writeFingerTapTaskData(test: finishedFingerTapTest)
+            
+        }
     }
     
     @IBAction func radioButtonTapped(_ sender: UIButton) {

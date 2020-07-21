@@ -12,12 +12,18 @@ class QuestionnaireViewController: UIViewController {
 
     @IBOutlet var taskNumberOuterView: UIView!
     @IBOutlet var taskNumberLabel: UILabel!
+    @IBOutlet var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTaskDetails()
+        configureButton()
         
         navigationItem.hidesBackButton = true
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToNewTestFromQuestionnaire", sender: self)
     }
     
     private func configureTaskDetails() {
@@ -34,6 +40,11 @@ class QuestionnaireViewController: UIViewController {
         taskNumberOuterView.layer.borderWidth = 3
         taskNumberOuterView.layer.borderColor = lightBlueColor.cgColor
         
+    }
+    
+    private func configureButton() {
+        doneButton.layer.masksToBounds = true
+        doneButton.layer.cornerRadius = 10
     }
     
 

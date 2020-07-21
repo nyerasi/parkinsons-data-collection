@@ -37,7 +37,7 @@ class RestViewController: UIViewController {
         if viewModel.task == .questionnaire {
             performSegue(withIdentifier: "toQuestionnaire", sender: self)
         } else {
-            performSegue(withIdentifier: "unwindFromRest", sender: self)
+            performSegue(withIdentifier: "unwindToOverviewFromRest", sender: self)
         }
     }
     

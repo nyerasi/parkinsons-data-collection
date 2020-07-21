@@ -14,6 +14,7 @@ class ClinicalRatingViewController: UIViewController {
     @IBOutlet var taskNumberLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var notesTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var radioButtonStackView: UIStackView!
     
@@ -56,15 +57,16 @@ class ClinicalRatingViewController: UIViewController {
     
     func finalizeRating(rating: Int, rater: String) {
         // use view model to track activity
+        let notes = notesTextField.text ?? ""
         if let motionData = motionData {
             // segued from Pronation Supination
-            let finishedMotionTest = MotionTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: motionData)
+            let finishedMotionTest = MotionTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: motionData, notes: notes)
             
             model.writeMovementTaskData(test: finishedMotionTest)
             
         } else if let fingerTapData = fingerTapData {
             // segued from Finger Tap (1 or 2 target)
-            let finishedFingerTapTest = FingerTapTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: fingerTapData)
+            let finishedFingerTapTest = FingerTapTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: fingerTapData, notes: notes)
             
             model.writeFingerTapTaskData(test: finishedFingerTapTest)
             

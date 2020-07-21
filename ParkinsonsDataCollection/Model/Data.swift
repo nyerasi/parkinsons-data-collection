@@ -13,6 +13,7 @@ protocol RatedTest {
     var rater: String { get set }
     var variant: String { get set }
     var duration: Int { get set }
+    var notes: String { get set }
 }
 
 // structs conform to Codable for easy JSON processing
@@ -38,6 +39,7 @@ struct MotionTest: RatedTest, Codable {
     var rating: Int
     var rater: String
     var data: [MotionTaskData]
+    var notes: String = ""
 }
 
 struct FingerTapTest: RatedTest, Codable {
@@ -46,6 +48,7 @@ struct FingerTapTest: RatedTest, Codable {
     var rating: Int
     var rater: String
     var data: [FingerTapData]
+    var notes: String = ""
 }
 
 

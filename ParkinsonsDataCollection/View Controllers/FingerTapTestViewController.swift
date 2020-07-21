@@ -32,8 +32,6 @@ class FingerTapTestViewController: UIViewController {
     var buttonTaps = [Int: Int]()
     
     // to log timestamps of each target's taps
-    var targetTaps = [Int: [Date]]()
-    
     var fingerTapData = [FingerTapData]()
     
     override func viewDidLoad() {
@@ -87,12 +85,14 @@ class FingerTapTestViewController: UIViewController {
         // buttonTaps [button tag (1 - 5): number of taps]
        
         // testing UIButton animations — shorten to one iteration?
-        // sender.flash()
+         sender.flash()
+        
+        let currentValue = buttonTaps[sender.tag] ?? 0
+        buttonTaps[sender.tag] = currentValue + 1
         
         let currentData = FingerTapData(date: Date(), value: sender.tag)
         fingerTapData.append(currentData)
         
-        targetTaps[sender.tag]?.append(Date())
     }
     
     func presentCompletedAlert() {
@@ -124,7 +124,8 @@ class FingerTapTestViewController: UIViewController {
             totalTaps += entry.value
         }
         let totalAccuracy = Double(buttonTaps[5] ?? 0) / Double(totalTaps)
-        return "\(totalAccuracy * 100)%"
+        
+        return "\(Double(round(1000 * totalAccuracy) / 1000) * 100)%"
     }
     
     @IBAction func startButtonTapped(_ sender: Any) {

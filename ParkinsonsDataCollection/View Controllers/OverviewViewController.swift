@@ -160,7 +160,7 @@ class OverviewViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindFromRest( _ seg: UIStoryboardSegue) {
+    @IBAction func unwindToOverviewFromRest( _ seg: UIStoryboardSegue) {
         
         // from rest view controller after rating
         /*

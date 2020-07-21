@@ -23,6 +23,18 @@ class TaskViewModel {
     
     var state: TaskState = .start
     
+    func setToFingerTap() {
+        task = .fingerTapTwo
+        taskNumber = 3
+        taskName = "Finger Tap: Two Targets"
+        taskInstructions = "Tap between the target and a marked spot 30 centimeters away"
+        taskGoal = "Perform the task as quickly as possible and try to maintain accuracy!"
+        taskDuration = 10
+        
+        leftSideDone = false
+        rightSideDone = false
+    }
+    
     func updateTask() {
         if leftSideDone && rightSideDone && taskDuration == 10 {
             taskDuration = 20

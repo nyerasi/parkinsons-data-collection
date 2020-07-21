@@ -24,6 +24,12 @@ class NewExamViewController: UIViewController {
         newExamButton.layer.cornerRadius = 10
     }
     
+    @IBAction func unwindToNewTestFromQuestionnaire( _ seg: UIStoryboardSegue) {
+        
+        // from questionnaire view controller after rating
+        
+    }
+    
 
     /*
     // MARK: - Navigation

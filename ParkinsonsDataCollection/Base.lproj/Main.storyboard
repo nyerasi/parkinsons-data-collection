@@ -61,6 +61,7 @@
                     <navigationItem key="navigationItem" title="New Exam" id="AmY-Yf-WuP"/>
                     <connections>
                         <outlet property="newExamButton" destination="0Bh-Li-inj" id="MoJ-I9-Z6t"/>
+                        <segue destination="Vcl-Fe-bwk" kind="unwind" unwindAction="unwindToNewTestFromRest:" id="eqE-MK-1pP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -250,6 +251,7 @@
                         <outlet property="taskSubtitleLabel" destination="urg-I2-dfd" id="QBb-Cz-auq"/>
                         <segue destination="yTr-SX-AmK" kind="show" identifier="toFingerTapTask" id="Odl-G1-xfC"/>
                         <segue destination="tHz-ZJ-6rG" kind="show" identifier="toSupinationPronationTask" id="Cra-6p-afg"/>
+                        <segue destination="Vcl-Fe-bwk" kind="unwind" unwindAction="unwindToOverviewFromRest:" id="wsP-Fi-xyk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7S-fO-jui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -796,6 +798,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EJQ-E5-CsO">
+                                <rect key="frame" x="52" y="551" width="310.5" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anything else to add?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-IU-0NA">
+                                        <rect key="frame" x="0.0" y="0.0" width="310.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-Cf-GP6">
+                                        <rect key="frame" x="0.0" y="34" width="310.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -804,11 +822,14 @@
                             <constraint firstItem="hoG-JN-pxG" firstAttribute="centerX" secondItem="RsM-ot-nXh" secondAttribute="centerX" id="5yF-8l-9ni"/>
                             <constraint firstItem="IUC-0u-JVu" firstAttribute="width" secondItem="Ajh-PC-9B2" secondAttribute="width" multiplier="0.75" id="8eM-iz-vu2"/>
                             <constraint firstItem="IAL-f7-cwg" firstAttribute="centerX" secondItem="RsM-ot-nXh" secondAttribute="centerX" id="Ce3-f6-wbO"/>
+                            <constraint firstItem="EJQ-E5-CsO" firstAttribute="width" secondItem="Ajh-PC-9B2" secondAttribute="width" multiplier="0.75" id="FvZ-Pj-nrG"/>
                             <constraint firstItem="znd-x0-Xgj" firstAttribute="centerX" secondItem="RsM-ot-nXh" secondAttribute="centerX" id="PT6-JN-AJQ"/>
                             <constraint firstItem="1eU-7B-waA" firstAttribute="centerX" secondItem="RsM-ot-nXh" secondAttribute="centerX" id="Qci-bU-gQD"/>
                             <constraint firstItem="1eU-7B-waA" firstAttribute="top" secondItem="t43-gO-BHf" secondAttribute="bottom" constant="20" id="RBR-EY-Z36"/>
+                            <constraint firstItem="EJQ-E5-CsO" firstAttribute="centerX" secondItem="1eU-7B-waA" secondAttribute="centerX" id="SN5-ah-0Ex"/>
                             <constraint firstItem="IUC-0u-JVu" firstAttribute="top" secondItem="hoG-JN-pxG" secondAttribute="bottom" constant="10" id="U5W-jO-iDS"/>
                             <constraint firstItem="hoG-JN-pxG" firstAttribute="top" secondItem="IAL-f7-cwg" secondAttribute="bottom" constant="10" id="ULt-1a-tWX"/>
+                            <constraint firstItem="EJQ-E5-CsO" firstAttribute="top" secondItem="1eU-7B-waA" secondAttribute="bottom" constant="22.5" id="WmK-iX-tiZ"/>
                             <constraint firstItem="1eU-7B-waA" firstAttribute="width" secondItem="Ajh-PC-9B2" secondAttribute="width" multiplier="0.75" id="lAc-6e-jEE"/>
                             <constraint firstItem="IUC-0u-JVu" firstAttribute="centerX" secondItem="RsM-ot-nXh" secondAttribute="centerX" id="n3f-NY-AFM"/>
                             <constraint firstItem="IAL-f7-cwg" firstAttribute="top" secondItem="RsM-ot-nXh" secondAttribute="top" constant="10" id="s6p-8q-tdn"/>
@@ -819,6 +840,7 @@
                     <navigationItem key="navigationItem" title="Clinical Rating" id="Tq0-EG-P1a"/>
                     <connections>
                         <outlet property="nameTextField" destination="Mv7-8n-52c" id="iiK-0v-GkI"/>
+                        <outlet property="notesTextField" destination="WN0-Cf-GP6" id="7dy-Z6-h6v"/>
                         <outlet property="radioButtonStackView" destination="3LL-od-hcV" id="675-6u-iwq"/>
                         <outlet property="submitButton" destination="znd-x0-Xgj" id="a3b-UG-jFB"/>
                         <outlet property="subtitleLabel" destination="sD7-S2-38J" id="mDs-IX-hpb"/>
@@ -924,8 +946,8 @@
                         <outlet property="taskNumberLabel" destination="ODv-od-Wat" id="I2B-m2-ggq"/>
                         <outlet property="taskNumberOuterView" destination="Oja-w7-hgF" id="CNz-pV-MEQ"/>
                         <outlet property="timeLabel" destination="cAw-3E-Azj" id="hrf-OH-buJ"/>
-                        <segue destination="Dg2-qX-Lqj" kind="unwind" identifier="unwindFromRest" unwindAction="unwindFromRest:" id="p5i-O8-FLg"/>
-                        <segue destination="v8a-Gd-kgK" kind="show" identifier="toQuestionnaire" id="eXO-2C-Vtw"/>
+                        <segue destination="Dg2-qX-Lqj" kind="unwind" identifier="unwindToOverviewFromRest" unwindAction="unwindToOverviewFromRest:" id="cuf-W7-1Nu"/>
+                        <segue destination="v8a-Gd-kgK" kind="show" identifier="toQuestionnaire" id="0wC-1l-u3R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUj-Fq-jkQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -933,10 +955,10 @@
             </objects>
             <point key="canvasLocation" x="4256" y="133"/>
         </scene>
-        <!--Questionnaire View Controller-->
+        <!--Symptoms-->
         <scene sceneID="Ad1-ff-SRP">
             <objects>
-                <viewController id="v8a-Gd-kgK" customClass="QuestionnaireViewController" customModule="ParkinsonsDataCollection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Symptoms" id="v8a-Gd-kgK" customClass="QuestionnaireViewController" customModule="ParkinsonsDataCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HGx-Yq-t71">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -971,14 +993,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQD-2g-UT7">
+                                <rect key="frame" x="125" y="793" width="164" height="51"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="8XS-Rv-lJY"/>
+                                    <constraint firstAttribute="width" constant="164" id="cQ3-J3-dT5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="2YJ-kK-RPS" eventType="touchUpInside" id="Y9C-Fd-gqa"/>
+                                    <action selector="doneButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="bJn-FD-jb8"/>
+                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="pIE-ad-Hb5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="Dev-Gy-ZXP"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="L1l-gO-hPL"/>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="top" secondItem="OZd-qz-jmP" secondAttribute="bottom" constant="10" id="S1s-EX-bUk"/>
+                            <constraint firstItem="VTF-rd-Jge" firstAttribute="bottom" secondItem="yQD-2g-UT7" secondAttribute="bottom" constant="18" id="Tpt-Kb-naS"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="width" secondItem="HGx-Yq-t71" secondAttribute="width" multiplier="0.75" id="WjM-yK-3WJ"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="top" secondItem="s7W-Xp-XTM" secondAttribute="bottom" constant="10" id="YVz-mm-bQr"/>
+                            <constraint firstItem="yQD-2g-UT7" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="aEc-Ax-4vu"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="gAi-vN-RBk"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="top" secondItem="VTF-rd-Jge" secondAttribute="top" constant="10" id="kaC-2S-IIY"/>
                         </constraints>
@@ -986,11 +1027,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="W0t-m7-uOF"/>
                     <connections>
+                        <outlet property="doneButton" destination="yQD-2g-UT7" id="RhI-fo-GOX"/>
                         <outlet property="taskNumberLabel" destination="JFb-mo-kJf" id="3Sq-rd-u2S"/>
                         <outlet property="taskNumberOuterView" destination="OZd-qz-jmP" id="b1R-R6-Ygn"/>
+                        <segue destination="Vcl-Fe-bwk" kind="unwind" identifier="unwindToNewTestFromQuestionnaire" unwindAction="unwindToNewTestFromQuestionnaire:" id="vOO-L1-rC3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8f-5J-q7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Vcl-Fe-bwk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5000" y="133"/>
         </scene>

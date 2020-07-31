@@ -16,7 +16,7 @@ class RestViewController: UIViewController {
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var doneButton: UIButton!
     
-    var count: Int = 1
+    var count: Int = 30
     var timer = Timer()
     
     override func viewDidLoad() {

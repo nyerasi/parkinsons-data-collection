@@ -77,16 +77,20 @@ class TaskViewModel {
                 return
             }
         case .fingerTapTwo:
-            // done with all three tests!
-            task = .questionnaire
-            taskNumber = 4
-            
-            taskName = "Symptom Questionnaire"
-            taskInstructions = "Mark which of the following best applies to your current state"
-            taskGoal = "Ask your clinician for more information!"
-            taskDuration = 20
-            // other attributes (left/right done) not relevant to this
-            return
+            if leftSideDone && rightSideDone && taskDuration == 20 {
+                
+                // done with all three tests!
+                task = .questionnaire
+                taskNumber = 4
+                
+                taskName = "Symptom Questionnaire"
+                taskInstructions = "Mark which of the following best applies to your current state"
+                taskGoal = "Ask your clinician for more information!"
+                taskDuration = 20
+                // other attributes (left/right done) not relevant to this
+                
+                return
+            }
         default:
             return
         }

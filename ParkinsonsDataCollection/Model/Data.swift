@@ -33,6 +33,7 @@ struct FingerTapData: Codable {
     var value: Int
 }
 
+// for these two tests, we can have each struct extend Identifiable as well, providing @DocumentID so Firestore can map each test to its id
 struct MotionTest: RatedTest, Codable {
     var duration: Int
     var variant: String

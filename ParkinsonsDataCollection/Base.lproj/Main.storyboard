@@ -987,8 +987,8 @@
                                     <constraint firstAttribute="height" constant="60" id="uEQ-E7-TnO"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following best applies to your current state?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McJ-Oh-z74">
-                                <rect key="frame" x="52" y="207" width="310.5" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following best applies to your current state? Don't worry about this for now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McJ-Oh-z74">
+                                <rect key="frame" x="52" y="207" width="310.5" height="72"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1010,10 +1010,29 @@
                                     <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="pIE-ad-Hb5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-Ma-Prc">
+                                <rect key="frame" x="107" y="303" width="200" height="51"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="8yY-9d-hMk"/>
+                                    <constraint firstAttribute="width" constant="200" id="fap-ql-Q7L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="DOWNLOAD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="2YJ-kK-RPS" eventType="touchUpInside" id="2bw-a9-yQS"/>
+                                    <action selector="doneButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="Y9J-Sq-KBu"/>
+                                    <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="SyD-ng-3fF"/>
+                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="lQ6-ic-jOD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="Dev-Gy-ZXP"/>
+                            <constraint firstItem="oMU-Ma-Prc" firstAttribute="centerX" secondItem="McJ-Oh-z74" secondAttribute="centerX" id="HaZ-5Q-hj0"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="L1l-gO-hPL"/>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="top" secondItem="OZd-qz-jmP" secondAttribute="bottom" constant="10" id="S1s-EX-bUk"/>
                             <constraint firstItem="VTF-rd-Jge" firstAttribute="bottom" secondItem="yQD-2g-UT7" secondAttribute="bottom" constant="18" id="Tpt-Kb-naS"/>
@@ -1022,12 +1041,14 @@
                             <constraint firstItem="yQD-2g-UT7" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="aEc-Ax-4vu"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="gAi-vN-RBk"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="top" secondItem="VTF-rd-Jge" secondAttribute="top" constant="10" id="kaC-2S-IIY"/>
+                            <constraint firstItem="oMU-Ma-Prc" firstAttribute="top" secondItem="McJ-Oh-z74" secondAttribute="bottom" constant="24" id="uLh-bx-ioU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VTF-rd-Jge"/>
                     </view>
                     <navigationItem key="navigationItem" id="W0t-m7-uOF"/>
                     <connections>
                         <outlet property="doneButton" destination="yQD-2g-UT7" id="RhI-fo-GOX"/>
+                        <outlet property="downloadButton" destination="oMU-Ma-Prc" id="9F7-OH-vpz"/>
                         <outlet property="taskNumberLabel" destination="JFb-mo-kJf" id="3Sq-rd-u2S"/>
                         <outlet property="taskNumberOuterView" destination="OZd-qz-jmP" id="b1R-R6-Ygn"/>
                         <segue destination="Vcl-Fe-bwk" kind="unwind" identifier="unwindToNewTestFromQuestionnaire" unwindAction="unwindToNewTestFromQuestionnaire:" id="vOO-L1-rC3"/>

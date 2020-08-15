@@ -86,6 +86,8 @@ extension QuestionnaireViewController {
         loadingIndicator.startAnimating()
         
         loadingIndicator.color = .white
+        loadingIndicator.style = .large
+        
         loadingIndicator.backgroundColor = lightBlueColor
         loadingIndicator.layer.masksToBounds = true
         loadingIndicator.layer.cornerRadius = 10

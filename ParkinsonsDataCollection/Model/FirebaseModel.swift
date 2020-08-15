@@ -186,7 +186,8 @@ class FirebaseModel {
     
     func saveToFile() {
         do {
-            let appendingDateDescription = Date().description
+            // using hash value of date right now for unique file URL... probably unnecessary
+            let appendingDateDescription = Date().hashValue
             
             let fileURL = try FileManager.default
             .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -198,6 +199,14 @@ class FirebaseModel {
             self.delegate?.readDataToJSON(url: fileURL)
         } catch {
             print(error)
+        }
+    }
+    
+    func deleteFileAtURL(url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
         }
     }
     

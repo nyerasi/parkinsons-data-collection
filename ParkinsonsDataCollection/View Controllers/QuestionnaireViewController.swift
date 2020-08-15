@@ -15,6 +15,8 @@ class QuestionnaireViewController: UIViewController {
     @IBOutlet var doneButton: UIButton!
     @IBOutlet var downloadButton: UIButton!
     
+    var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTaskDetails()
@@ -25,15 +27,12 @@ class QuestionnaireViewController: UIViewController {
     
     @IBAction func downloadButtonTapped(_ sender: Any) {
         // goal: download all data from the firebase backend and save it as a JSON/CSV
+
+        // present loading state
+        startLoading()
         
-//        model.readAllData { (data) in
-//            print(data)
-//        }
         model.delegate = self
-        model.readAllData { (data) in
-            print("completion handler, read all data")
-            
-        }
+        model.readAllData()
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
@@ -77,12 +76,42 @@ class QuestionnaireViewController: UIViewController {
 
 }
 
-extension QuestionnaireViewController: FirebaseDataStorageDelegate {
-    func finishedReadingAllData(allData: String) {
-        print("delegate func called, read all data")
-        print(allData)
+// for loading indicator
+extension QuestionnaireViewController {
+    func startLoading() {
+//        loadingIndicator = UIActivityIndicatorView(frame: downloadButton.frame)
+        let frame = downloadButton.frame
+        
+        loadingIndicator = UIActivityIndicatorView(frame: frame)
+        loadingIndicator.startAnimating()
+        
+        loadingIndicator.color = .white
+        loadingIndicator.backgroundColor = lightBlueColor
+        loadingIndicator.layer.masksToBounds = true
+        loadingIndicator.layer.cornerRadius = 10
+        
+        downloadButton.isEnabled = false
+        UIView.animate(withDuration: 0.4) {
+            self.downloadButton.alpha = 0
+        }
+        view.addSubview(loadingIndicator)
     }
     
+    func stopLoading() {
+        downloadButton.isEnabled = true
+        UIView.animate(withDuration: 0.4) {
+            self.loadingIndicator.alpha = 0
+            self.downloadButton.alpha = 1
+        }
+        
+        self.loadingIndicator.removeFromSuperview()
+    }
+    
+    
+}
+
+extension QuestionnaireViewController: FirebaseDataStorageDelegate {
+
     func finishedWritingData() {
         print("wrote data")
     }
@@ -90,15 +119,18 @@ extension QuestionnaireViewController: FirebaseDataStorageDelegate {
     func readDataToJSON(url: URL) {
         print("url: \(url)")
         // https://stackoverflow.com/questions/50703353/trying-to-share-a-json-string-in-a-file-with-an-activity-view-controller
-        do {
-            let _ = try Data(contentsOf: url)
-            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.view
-            self.present(activityViewController, animated: true, completion: nil)
-        } catch {
-            print(error)
+        DispatchQueue.main.async {
+            // remove loading indicator
+            self.stopLoading()
+            
+            do {
+                let _ = try Data(contentsOf: url)
+                let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view
+                self.present(activityViewController, animated: true, completion: nil)
+            } catch {
+                print(error)
+            }
         }
-
     }
-    
 }

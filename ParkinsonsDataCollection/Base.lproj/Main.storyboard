@@ -236,7 +236,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PPb-GX-87f"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Task One" id="11a-kx-w7C"/>
+                    <navigationItem key="navigationItem" title="Task One" id="11a-kx-w7C">
+                        <barButtonItem key="rightBarButtonItem" title="All Data" id="NPc-AU-xRg">
+                            <connections>
+                                <segue destination="v8a-Gd-kgK" kind="show" id="rJ3-Xn-enN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonsStackView" destination="rKu-2Y-yCw" id="vnJ-Qj-g6y"/>
                         <outlet property="leftSideOuterView" destination="k2B-w7-VCp" id="r7y-Ky-oqB"/>
@@ -524,7 +530,6 @@
                                 </state>
                                 <connections>
                                     <action selector="startButtonTapped:" destination="tHz-ZJ-6rG" eventType="touchUpInside" id="kJu-n8-fRl"/>
-                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="n5a-AK-bd7"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="3zM-4M-Tr9">
@@ -678,7 +683,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="QKb-0D-RJh"/>
                                     <action selector="submitButtonTapped:" destination="8ug-kQ-7D8" eventType="touchUpInside" id="lpT-Fm-cg8"/>
                                 </connections>
                             </button>
@@ -913,7 +917,6 @@
                                 </state>
                                 <connections>
                                     <action selector="doneButtonTapped:" destination="2YJ-kK-RPS" eventType="touchUpInside" id="5sl-8T-3q1"/>
-                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="iEK-QJ-BhP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -963,8 +966,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questionnaire" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7W-Xp-XTM">
-                                <rect key="frame" x="130" y="168" width="154" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7W-Xp-XTM">
+                                <rect key="frame" x="146.5" y="168" width="121" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -987,7 +990,7 @@
                                     <constraint firstAttribute="height" constant="60" id="uEQ-E7-TnO"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following best applies to your current state? Don't worry about this for now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McJ-Oh-z74">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You may also choose to download all recorded test data for further analysis!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McJ-Oh-z74">
                                 <rect key="frame" x="52" y="207" width="310.5" height="72"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -1005,9 +1008,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="doneButtonTapped:" destination="2YJ-kK-RPS" eventType="touchUpInside" id="Y9C-Fd-gqa"/>
                                     <action selector="doneButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="bJn-FD-jb8"/>
-                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="pIE-ad-Hb5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-Ma-Prc">
@@ -1022,10 +1023,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="doneButtonTapped:" destination="2YJ-kK-RPS" eventType="touchUpInside" id="2bw-a9-yQS"/>
-                                    <action selector="doneButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="Y9J-Sq-KBu"/>
                                     <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="SyD-ng-3fF"/>
-                                    <action selector="startButtonTapped:" destination="yTr-SX-AmK" eventType="touchUpInside" id="lQ6-ic-jOD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1057,7 +1055,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8f-5J-q7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Vcl-Fe-bwk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5000" y="133"/>
+            <point key="canvasLocation" x="2604" y="1137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hRI-KG-HXK">
@@ -1079,6 +1077,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="0wC-1l-u3R"/>
         <segue reference="hCi-ee-nBj"/>
     </inferredMetricsTieBreakers>
     <resources>

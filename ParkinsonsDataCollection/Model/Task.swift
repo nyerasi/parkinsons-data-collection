@@ -48,11 +48,11 @@ enum CurrentState {
  case isRated
  */
 
-enum TaskState {
-    case start
-    case left
-    case right
-    case done
+enum TaskState: String {
+    case start = "Start"
+    case left = "Left Side"
+    case right = "Right Side"
+    case done = "Done"
 }
 
 enum ExamState {

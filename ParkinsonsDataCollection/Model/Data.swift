@@ -9,46 +9,51 @@
 import Foundation
 
 protocol RatedTest {
-    var rating: Int { get set }
-    var rater: String { get set }
-    var variant: String { get set }
-    var duration: Int { get set }
-    var notes: String { get set }
+    var rating: Int { get }
+    var rater: String { get }
+    var variant: String { get }
+    var side: String { get }
+    var duration: Int { get }
+    var notes: String { get }
 }
 
 // structs conform to Codable for easy JSON processing
-
 struct MotionTaskData: Codable {
-    var date: Date
-    var userAccelerationX: Double
-    var userAccelerationY: Double
-    var userAccelerationZ: Double
-    var roll: Double
-    var pitch: Double
-    var yaw: Double
+    let date: Date
+    let gravityX: Double
+    let gravityY: Double
+    let gravityZ: Double
+    let userAccelerationX: Double
+    let userAccelerationY: Double
+    let userAccelerationZ: Double
+    let roll: Double
+    let pitch: Double
+    let yaw: Double
 }
 
 struct FingerTapData: Codable {
-    var date: Date
-    var value: Int
+    let date: Date
+    let value: Int
 }
 
 // for these two tests, we can have each struct extend Identifiable as well, providing @DocumentID so Firestore can map each test to its id
 struct MotionTest: RatedTest, Codable {
-    var duration: Int
-    var variant: String
-    var rating: Int
-    var rater: String
-    var data: [MotionTaskData]
+    let side: String
+    let duration: Int
+    let variant: String
+    let rating: Int
+    let rater: String
+    let data: [MotionTaskData]
     var notes: String = ""
 }
 
 struct FingerTapTest: RatedTest, Codable {
-    var duration: Int
-    var variant: String
-    var rating: Int
-    var rater: String
-    var data: [FingerTapData]
+    let side: String
+    let duration: Int
+    let variant: String
+    let rating: Int
+    let rater: String
+    let data: [FingerTapData]
     var notes: String = ""
 }
 

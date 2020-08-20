@@ -60,13 +60,13 @@ class ClinicalRatingViewController: UIViewController {
         let notes = notesTextField.text ?? ""
         if let motionData = motionData {
             // segued from Pronation Supination
-            let finishedMotionTest = MotionTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: motionData, notes: notes)
+            let finishedMotionTest = MotionTest(side: viewModel.state.rawValue, duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: motionData, notes: notes)
             
             model.writeMovementTaskData(test: finishedMotionTest)
             
         } else if let fingerTapData = fingerTapData {
             // segued from Finger Tap (1 or 2 target)
-            let finishedFingerTapTest = FingerTapTest(duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: fingerTapData, notes: notes)
+            let finishedFingerTapTest = FingerTapTest(side: viewModel.state.rawValue, duration: viewModel.taskDuration, variant: viewModel.taskName, rating: rating, rater: rater, data: fingerTapData, notes: notes)
             
             model.writeFingerTapTaskData(test: finishedFingerTapTest)
             
@@ -194,9 +194,8 @@ class ClinicalRatingViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // segue to appropriate task
         if let dest = segue.destination as? RestViewController {
-            // what should we configure here?
+            
         }
-        // where else could this segue to?
     }
     
 }

@@ -130,11 +130,13 @@ class FirebaseModel {
             // unwrapping encoded data and casting to String with formatting (what is this doing to the dates?)
             guard let data = encodedData, let stringRepresentation = String(data: data, encoding: .utf8) else { return }
             
-            self.allTestData += "Pronation-Supination"
-            self.allTestData += "/n"
+            self.allTestData += "{"
+            
+            self.allTestData += "\"Pronation-Supination\":"
             
             self.allTestData += stringRepresentation
             
+            self.allTestData += ","
             // this is hideous, I know
         
             // one target
@@ -153,10 +155,12 @@ class FirebaseModel {
                 let encodedData = try? encoder.encode(tapTests)
                 guard let data = encodedData, let stringRepresentation = String(data: data, encoding: .utf8) else { return }
                 
-                self.allTestData += "Finger Tap: One Target"
-                self.allTestData += "/n"
+                self.allTestData += "\"Finger Tap: One Target\":"
                 
                 self.allTestData += stringRepresentation
+                
+                self.allTestData += ","
+
                 
                 // two target
                 tapTests = [FingerTapTest]()
@@ -171,11 +175,11 @@ class FirebaseModel {
                     let encodedData = try? encoder.encode(tapTests)
                     guard let data = encodedData, let stringRepresentation = String(data: data, encoding: .utf8) else { return }
                     
-                    self.allTestData += "Finger Tap: Two Targets"
-                    self.allTestData += "/n"
+                    self.allTestData += "\"Finger Tap: Two Targets\""
                     
                     self.allTestData += stringRepresentation
                     
+                    self.allTestData += "}"
                     // okay, now build in support for writing to a URL and sharing that URL with the delegate/View Controller
                     
                     self.saveToFile()

@@ -56,7 +56,7 @@ class RotationTestViewController: UIViewController {
         
         do {
             try motionDataText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-
+            
         } catch {
             // present alert (reset state of view controller activity?)
             let retryAlertAction = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
@@ -79,7 +79,12 @@ class RotationTestViewController: UIViewController {
         let updateFrequency = 1.0 / 60.0
         let motionHandler: CMDeviceMotionHandler = { [weak self] (motion, error) in
             if let validData = motion {
+                // add gravity
+                let gravity = validData.gravity
                 let newData = MotionTaskData(date: Date(),
+                                             gravityX: validData.gravity.x,
+                                             gravityY: validData.gravity.y,
+                                             gravityZ: validData.gravity.z,
                                              userAccelerationX: validData.userAcceleration.x,
                                              userAccelerationY: validData.userAcceleration.y,
                                              userAccelerationZ: validData.userAcceleration.z,

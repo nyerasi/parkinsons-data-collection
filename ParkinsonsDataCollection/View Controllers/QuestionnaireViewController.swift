@@ -9,13 +9,14 @@
 import UIKit
 
 class QuestionnaireViewController: UIViewController {
-
+    
     @IBOutlet var taskNumberOuterView: UIView!
     @IBOutlet var taskNumberLabel: UILabel!
     @IBOutlet var doneButton: UIButton!
-    @IBOutlet var downloadButton: UIButton!
+    @IBOutlet var buttonStackView: UIStackView!
     
     var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var currentButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,23 @@ class QuestionnaireViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
-    @IBAction func downloadButtonTapped(_ sender: Any) {
+    @IBAction func downloadButtonTapped(_ sender: UIButton) {
         // goal: download all data from the firebase backend and save it as a JSON/CSV
-
-        // present loading state
+        
+        // use button tags to differentate the buttons from each other
+        switch sender.tag {
+        case 0:
+            print("rotation")
+        case 1:
+            print("finger tap 1")
+        case 2:
+            print("finger tap 2")
+        default:
+            break
+        }
+        
+        // present loading state, set curent button to the sender
+        currentButton = sender
         startLoading()
         
         model.delegate = self
@@ -41,11 +55,6 @@ class QuestionnaireViewController: UIViewController {
     
     private func configureTaskDetails() {
         taskNumberLabel.text = "\(viewModel.taskNumber)"
-//        taskNameLabel.text = viewModel.taskName
-//        taskSubtitleLabel.text = "\(viewModel.taskDuration) seconds each side"
-//        taskInstructionsLabel.text = viewModel.taskInstructions
-//        taskGoalLabel.text = viewModel.taskGoal
-        
         taskNumberLabel.textColor = lightBlueColor
         taskNumberOuterView.backgroundColor = .clear
         taskNumberOuterView.layer.cornerRadius = 30
@@ -56,30 +65,35 @@ class QuestionnaireViewController: UIViewController {
     }
     
     private func configureButtons() {
+        for subview in buttonStackView.arrangedSubviews {
+            if let button = subview as? UIButton {
+                button.layer.masksToBounds = true
+                button.layer.cornerRadius = 10
+            }
+        }
+        
         doneButton.layer.masksToBounds = true
         doneButton.layer.cornerRadius = 10
-        
-        downloadButton.layer.masksToBounds = true
-        downloadButton.layer.cornerRadius = 10
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 // for loading indicator
 extension QuestionnaireViewController {
     func startLoading() {
-//        loadingIndicator = UIActivityIndicatorView(frame: downloadButton.frame)
+        guard let downloadButton = currentButton else { return }
+        
         let frame = downloadButton.frame
         
         loadingIndicator = UIActivityIndicatorView(frame: frame)
@@ -94,16 +108,18 @@ extension QuestionnaireViewController {
         
         downloadButton.isEnabled = false
         UIView.animate(withDuration: 0.4) {
-            self.downloadButton.alpha = 0
+            downloadButton.alpha = 0
         }
         view.addSubview(loadingIndicator)
     }
     
     func stopLoading() {
+        guard let downloadButton = currentButton else { return }
+        
         downloadButton.isEnabled = true
         UIView.animate(withDuration: 0.4) {
             self.loadingIndicator.alpha = 0
-            self.downloadButton.alpha = 1
+            downloadButton.alpha = 1
         }
         
         self.loadingIndicator.removeFromSuperview()
@@ -113,7 +129,7 @@ extension QuestionnaireViewController {
 }
 
 extension QuestionnaireViewController: FirebaseDataStorageDelegate {
-
+    
     func finishedWritingData() {
         print("wrote data")
     }

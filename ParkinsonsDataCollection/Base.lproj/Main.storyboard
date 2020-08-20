@@ -967,7 +967,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7W-Xp-XTM">
-                                <rect key="frame" x="146.5" y="168" width="121" height="29"/>
+                                <rect key="frame" x="147" y="168" width="120.5" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1011,42 +1011,77 @@
                                     <action selector="doneButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="bJn-FD-jb8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-Ma-Prc">
-                                <rect key="frame" x="107" y="303" width="200" height="51"/>
-                                <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="8yY-9d-hMk"/>
-                                    <constraint firstAttribute="width" constant="200" id="fap-ql-Q7L"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="DOWNLOAD">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="SyD-ng-3fF"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="02j-NA-pWx">
+                                <rect key="frame" x="127" y="303" width="160" height="167"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMU-Ma-Prc">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="45"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="8yY-9d-hMk"/>
+                                            <constraint firstAttribute="width" constant="160" id="fap-ql-Q7L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Rotation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="SAl-Pp-ztk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-WC-1GJ">
+                                        <rect key="frame" x="0.0" y="61" width="160" height="45"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Jz8-vc-vac"/>
+                                            <constraint firstAttribute="width" constant="160" id="zfK-Fe-Nuu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Tapping 1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="BTa-FW-MAc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TqK-L0-i6Y">
+                                        <rect key="frame" x="0.0" y="122" width="160" height="45"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.70196078429999997" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="160" id="JYX-EH-feZ"/>
+                                            <constraint firstAttribute="height" constant="45" id="fpf-y7-mNP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Tapping 2">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="downloadButtonTapped:" destination="v8a-Gd-kgK" eventType="touchUpInside" id="BK0-uY-eJT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="Dev-Gy-ZXP"/>
-                            <constraint firstItem="oMU-Ma-Prc" firstAttribute="centerX" secondItem="McJ-Oh-z74" secondAttribute="centerX" id="HaZ-5Q-hj0"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="L1l-gO-hPL"/>
                             <constraint firstItem="s7W-Xp-XTM" firstAttribute="top" secondItem="OZd-qz-jmP" secondAttribute="bottom" constant="10" id="S1s-EX-bUk"/>
                             <constraint firstItem="VTF-rd-Jge" firstAttribute="bottom" secondItem="yQD-2g-UT7" secondAttribute="bottom" constant="18" id="Tpt-Kb-naS"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="width" secondItem="HGx-Yq-t71" secondAttribute="width" multiplier="0.75" id="WjM-yK-3WJ"/>
                             <constraint firstItem="McJ-Oh-z74" firstAttribute="top" secondItem="s7W-Xp-XTM" secondAttribute="bottom" constant="10" id="YVz-mm-bQr"/>
                             <constraint firstItem="yQD-2g-UT7" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="aEc-Ax-4vu"/>
+                            <constraint firstItem="02j-NA-pWx" firstAttribute="top" secondItem="McJ-Oh-z74" secondAttribute="bottom" constant="24" id="f3h-8H-EKP"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="gAi-vN-RBk"/>
                             <constraint firstItem="OZd-qz-jmP" firstAttribute="top" secondItem="VTF-rd-Jge" secondAttribute="top" constant="10" id="kaC-2S-IIY"/>
-                            <constraint firstItem="oMU-Ma-Prc" firstAttribute="top" secondItem="McJ-Oh-z74" secondAttribute="bottom" constant="24" id="uLh-bx-ioU"/>
+                            <constraint firstItem="02j-NA-pWx" firstAttribute="centerX" secondItem="VTF-rd-Jge" secondAttribute="centerX" id="pbP-qd-3i0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VTF-rd-Jge"/>
                     </view>
                     <navigationItem key="navigationItem" id="W0t-m7-uOF"/>
                     <connections>
+                        <outlet property="buttonStackView" destination="02j-NA-pWx" id="LHa-Az-z1D"/>
                         <outlet property="doneButton" destination="yQD-2g-UT7" id="RhI-fo-GOX"/>
-                        <outlet property="downloadButton" destination="oMU-Ma-Prc" id="9F7-OH-vpz"/>
                         <outlet property="taskNumberLabel" destination="JFb-mo-kJf" id="3Sq-rd-u2S"/>
                         <outlet property="taskNumberOuterView" destination="OZd-qz-jmP" id="b1R-R6-Ygn"/>
                         <segue destination="Vcl-Fe-bwk" kind="unwind" identifier="unwindToNewTestFromQuestionnaire" unwindAction="unwindToNewTestFromQuestionnaire:" id="vOO-L1-rC3"/>
